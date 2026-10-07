@@ -1,0 +1,49 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 19,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "vs2026",
+      "displayName": "Visual Studio 2026 - x64 Debug",
+      "description": "Configure for Visual Studio 2026 (x64, Debug)",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/_Build/windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_Build/windows/install"
+      }
+    },
+    {
+      "name": "ninja-release",
+      "displayName": "Ninja - x64 Release",
+      "description": "Configure for Ninja (x64 Release)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/_Build/windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/_Build/windows/install"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-launcher",
+      "configurePreset": "vs2026",
+      "description": "Build the 'launcher' target using the vs2026 configure preset",
+      "targets": [ "launcher" ],
+      "configuration": "Debug"
+    },
+    {
+      "name": "install",
+      "configurePreset": "vs2026",
+      "description": "Install into the preset install prefix",
+      "targets": [ "install" ],
+      "configuration": "Debug"
+    }
+  ]
+}
